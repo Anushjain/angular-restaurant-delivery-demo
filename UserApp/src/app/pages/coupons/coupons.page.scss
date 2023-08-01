@@ -1,0 +1,35 @@
+.noData{
+    border-radius: 10px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 100%;
+    height: 250px;
+}
+.coupons{
+    border-bottom: 1px solid lightgray;
+    .info{
+        .title{
+            margin: 0px;
+            font-weight: bold;
+            .code{
+                font-weight: normal;
+                color: var(--ion-color-primary);
+            }
+            .expire{
+                font-size: .8rem;
+                color: gray;
+            }
+            .desc{
+                font-size: .8rem;
+                color: gray;
+            }
+        }
+    }
+    .btns{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}

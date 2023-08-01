@@ -1,0 +1,111 @@
+<ion-header>
+  <ion-toolbar>
+    <div class="header_div">
+      <ion-buttons slot="start">
+        <ion-back-button text="" mode="md"></ion-back-button>
+      </ion-buttons>
+      <!-- <ion-label class="support_lbl">Support</ion-label> -->
+    </div>
+    <ion-buttons slot="end">
+      <ion-button (click)="chat()" color="danger">
+        <ion-icon slot="end" name="chatbox-ellipses-outline"></ion-icon>
+        {{'Support' | translate}}
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="!loaded" style="display: flex;flex-direction: column;justify-content: center;align-items: center;">
+    <ion-spinner color="primary" name="crescent"></ion-spinner>
+  </div>
+  <div class="main_content_div" *ngIf="loaded">
+    <ion-label class="header_lbl">{{'Order Summary' | translate}}</ion-label>
+    <ion-label class="res_location">{{'This order with' | translate}} {{restName}} {{'was' | translate}} {{status}}
+    </ion-label>
+
+    <div class="line_div"></div>
+
+    <ion-label class="res_location">{{address}}</ion-label>
+
+    <div class="flex_div">
+      <ion-label class="res_name" style="margin-top: 0px;">{{'Your Order' | translate}}</ion-label>
+      <ion-label class="fav_lbl" (click)="trackMyOrder()" *ngIf="status =='ongoing' || status =='accepted' ">
+        {{'Track Order' | translate}}
+      </ion-label>
+    </div>
+
+    <!-- <div class="line_div"></div> -->
+
+    <span *ngFor="let item of orders">
+
+      <div *ngFor="let subItems of item.selectedItem;let j = index" class="subNames">
+        <ion-label class="food_title">
+          {{item.name}} X
+          {{item.selectedItem[j].total}}</ion-label>
+        <div *ngFor="let addods of subItems.item" class="flex_titles">
+          <p class="sub_name">
+            - {{addods.name}}
+          </p>
+          <p class="sub_name">
+            {{getCurrency()}} {{addods.value}}
+          </p>
+        </div>
+      </div>
+
+      <div class="card_div" *ngIf="!item.selectedItem || !item.selectedItem.length">
+        <div class="flex_div">
+          <ion-label class="food_title">{{item.name}} X {{item.quantiy}} </ion-label>
+          <ion-label class="food_price">{{getCurrency()}}{{item.quantiy * item.price}}</ion-label>
+        </div>
+
+      </div>
+
+    </span>
+
+    <ion-label style="margin-top: 5px; font-weight: 600px;">{{'Item Total' | translate}} <span
+        class="prise_lbl">{{getCurrency()}}{{total}}</span>
+    </ion-label>
+    <ion-label style="margin-top: 5px; font-weight: 600px;" *ngIf="coupon">{{'Coupon Discout' | translate}} <span
+        class="prise_lbl">{{getCurrency()}}{{dicount}}</span>
+    </ion-label>
+    <ion-label style="margin-top: 5px; font-size: 14px">{{'Delivery Charge' | translate}} <span
+        class="prise_lbl">{{getCurrency()}}{{serviceTax}}</span>
+    </ion-label>
+    <div class="line_div"></div>
+
+    <ion-label class="res_name">{{'Order Detail' | translate}}</ion-label>
+    <div class="line_div"></div>
+
+    <ion-label class="head_gray">{{'Order Number' | translate}}</ion-label>
+    <ion-label class="small_lbl">{{id}}</ion-label>
+    <ion-label class="head_gray">{{'Payment' | translate}}</ion-label>
+    <ion-label class="small_lbl">{{'Paid' | translate}} ; <span *ngIf="paid =='cod'">COD</span> <span
+        *ngIf="paid =='stripe'">{{'Using Card' | translate}}</span> </ion-label>
+    <ion-label class="head_gray">{{'Date' | translate}}</ion-label>
+    <ion-label class="small_lbl">{{time}}</ion-label>
+    <ion-label class="head_gray">{{'Deliver to' | translate}}</ion-label>
+    <ion-label class="small_lbl">{{deliveryAddress}}</ion-label>
+
+    <div class="line_div"></div>
+
+    <ion-label class="red_lbl" *ngIf="status =='created' ||status =='ongoing' || status =='accepted' " (click)="call()">
+      {{'Call' | translate}} {{restName}}</ion-label>
+
+
+  </div>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <div class="btn_div">
+      <ion-button *ngIf="status ==='delivered'" (click)="presentAlertConfirm()" size="small" class="ratae">
+        <ion-icon name="star" color="light" slot="start"></ion-icon>
+        {{'Rate Order' | translate}}
+      </ion-button>
+      <ion-button *ngIf="status === 'created' ||status === 'ongoing' || status === 'accepted' " (click)="changeStatus()"
+        size="small" class="reject">
+        {{'Cancel Order' | translate}}
+      </ion-button>
+    </div>
+  </ion-toolbar>
+</ion-footer>

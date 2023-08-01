@@ -1,0 +1,104 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{'Recent Orders' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="mainContent">
+    <div *ngFor="let item of dummy">
+      <ion-list>
+        <ion-item>
+          <ion-thumbnail slot="start">
+            <ion-skeleton-text animated></ion-skeleton-text>
+          </ion-thumbnail>
+          <ion-label>
+            <h3>
+              <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+            </h3>
+            <p>
+              <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+            </p>
+            <p>
+              <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+            </p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
+    <div class="noData" *ngIf="!haveItems && !dummy?.length">
+      <img src="assets/runing.gif" alt="" class="noDataImg">
+      <ion-label>{{"You haven't ordered anything" | translate}}</ion-label>
+      <ion-label>{{'Please order your favourite food' | translate}} </ion-label>
+      <ion-button (click)="getCart()" expand="block" fill="outline">
+        {{'Browse your favourite restaurants' | translate}}
+      </ion-button>
+    </div>
+    <div class="haveData">
+
+      <div class="card_div" *ngFor="let item of myOrders" (click)="goToHistoryDetail(item.id)">
+
+        <div class="resto_detail">
+          <div class="back_image" [style.backgroundImage]="'url('+item.vid.cover+')'"></div>
+          <div style="margin-left: 20px;">
+            <ion-label class="res_name">{{item.vid.name}}</ion-label>
+            <ion-label class="res_location">
+              {{item.vid.address}}
+            </ion-label>
+          </div>
+        </div>
+
+        <div class="line_div"></div>
+        <div class="order_detail">
+          <ion-label class="head_gray">{{'ITEMS' | translate}}</ion-label>
+          <div class="small_lbl">
+            <span *ngFor="let order of item.order;let ol = index">
+              <div *ngIf="!order.selectedItem || !order.selectedItem.length" class="border_bottom">
+                {{order.name}} X {{order.quantiy}} <span *ngIf="ol !=item.order.length">,</span>
+              </div>
+
+              <div *ngFor="let subItems of order.selectedItem;let j = index" class="subNames">
+                <ion-label class="food_title">{{order.name}} X {{order.selectedItem[j].total}}</ion-label>
+                <div *ngFor="let addods of subItems.item" class="flex_titles">
+                  <p class="sub_name">
+                    - {{addods.name}}
+                  </p>
+                  <p class="sub_name">
+                    {{getCurrency()}} {{addods.value}}
+                  </p>
+                </div>
+              </div>
+            </span>
+          </div>
+          <ion-label class="head_gray">{{'ORDERED ON' | translate}}</ion-label>
+          <ion-label class="small_lbl">{{getDate(item.time)}} </ion-label>
+          <ion-label class="head_gray">{{'TOTAL AMOUNT' | translate}}</ion-label>
+          <ion-label class="small_lbl"> {{getCurrency()}} {{item.grandTotal}}</ion-label>
+        </div>
+
+        <div class="line_div"></div>
+
+        <div class="status_detail" *ngIf="item.status =='completed' || item.status == 'delivered'">
+          <div class="deliver_div">
+            {{'Delivered' | translate}}
+          </div>
+        </div>
+        <div class="status_detail" *ngIf="item.status =='rejected' || item.status == 'cancel'">
+          <div class="deliver_div">
+            {{'Your Order is' | translate}} {{item.status}}
+          </div>
+        </div>
+        <div class="status_detail"
+          *ngIf="item.status =='created' || item.status =='ongoing' || item.status === 'accepted'">
+          <div class="deliver_div">
+            {{'Your Order is' | translate}} {{item.status}}
+          </div>
+          <div class="repeat_div" style="color: green;">
+            <ion-icon name="map-outline"></ion-icon>{{'Track Order' | translate}}
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,26 @@
+.main_content_div{
+    padding: 20px;
+    .back_image{
+        height: 300px;
+        width: 100%;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        position: relative;
+        border: 1px solid lightgray;
+        border-radius: 5px;
+    }
+
+    ion-input{
+        border-radius: 5px;
+        border: 1px solid lightgray;
+        margin-top: 20px;
+        --padding-start : 8px;
+    }
+
+    ion-button{
+        --border-radius: 5px;
+        font-weight: 600;
+        margin-top: 20px;
+    }
+}

@@ -1,0 +1,164 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="back()">
+        <ion-icon slot="icon-only" color="dark" mode="md" name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{'Order Details' | translate}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="printOrder()">
+        <ion-icon slot="start" name="print-outline"></ion-icon>
+        {{'Print' | translate}}
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="!loaded" style="display: flex;flex-direction: column;justify-content: center;align-items: center;">
+    <ion-spinner color="primary" name="crescent"></ion-spinner>
+  </div>
+  <div *ngIf="loaded" class="main_content_div">
+
+
+    <div class="card_div">
+      <div class="resto_detail">
+        <div class="back_image" [style.backgroundImage]="'url('+userPic+')'"></div>
+        <div style="margin-left: 10px;">
+          <ion-label class="res_name">{{userName}}</ion-label>
+          <ion-label class="res_location">{{time}}</ion-label>
+        </div>
+      </div>
+    </div>
+
+    <div class="orderId">
+      <div class="order_id">
+        <ion-label>{{'Order ID' | translate}}</ion-label>
+        <ion-label>{{id}}</ion-label>
+      </div>
+    </div>
+    <div class="line_div"></div>
+
+
+    <div class="card_div2" *ngIf="phone">
+      <div class="personal_detail">
+        <div style="display: flex;">
+          <ion-icon name="call"></ion-icon>&nbsp;&nbsp;
+          <ion-label class="res_name">{{phone}}</ion-label>
+        </div>
+        <div>
+          <ion-button (click)="call()" size="small" fill="outline">{{'Call' | translate}}</ion-button>
+        </div>
+      </div>
+    </div>
+
+    <div class="line_div"></div>
+
+    <div class="card_div2" *ngIf="userEmail">
+      <div class="personal_detail">
+        <div style="display: flex;">
+          <ion-icon name="mail"></ion-icon>&nbsp;&nbsp;
+          <ion-label class="res_name">{{userEmail}}</ion-label>
+        </div>
+        <div>
+          <ion-button (click)="email()" size="small" fill="outline">{{'Email' | translate}}</ion-button>
+        </div>
+      </div>
+    </div>
+
+    <div class="line_div"></div>
+
+    <div class="card_div2">
+      <div class="personal_detail">
+        <div style="display: flex;">
+          <ion-icon name="location"></ion-icon>&nbsp;&nbsp;
+          <ion-label class="res_name">{{deliveryAddress}}</ion-label>
+        </div>
+      </div>
+    </div>
+
+    <div class="card_div2">
+      <div class="personal_detail">
+        <div *ngIf="status != 'delivered'  && status != 'cancel' && status !='reject' && status !='created' ">
+          <ion-button (click)="goToTracker()" size="small" fill="outline">{{'Navigate' | translate}}</ion-button>
+        </div>
+      </div>
+    </div>
+
+    <span *ngFor="let item of orders">
+
+      <div *ngFor="let subItems of item.selectedItem;let j = index" class="subNames">
+        <ion-label class="food_title">
+          {{item.name}} X
+          {{item.selectedItem[j].total}}</ion-label>
+        <div *ngFor="let addods of subItems.item" class="flex_titles">
+          <p class="sub_name">
+            - {{addods.name}}
+          </p>
+          <p class="sub_name">
+            {{getCurrency()}} {{addods.value}}
+          </p>
+        </div>
+      </div>
+
+      <div class="card_div4" *ngIf="!item.selectedItem || !item.selectedItem.length">
+        <div class="flex_div">
+          <ion-label class="food_title">{{item.name}} X {{item.quantiy}} </ion-label>
+          <ion-label class="food_price">{{getCurrency()}}{{item.quantiy * item.price}}</ion-label>
+        </div>
+
+      </div>
+
+    </span>
+
+    <div class="card_div2">
+
+      <div class="order_detail">
+        <ion-label class="small_lbl2">{{'SubTotal' | translate}}<span class="prize1">{{getCurrency()}}{{total}}</span>
+        </ion-label>
+        <ion-label class="small_lbl2">{{'Delivery Charge' | translate}}<span class="prize1">{{getCurrency()}}5</span>
+        </ion-label>
+        <ion-label class="small_lbl2">{{'Service Tax' | translate}}<span
+            class="prize1">{{getCurrency()}}{{serviceTax}}</span>
+        </ion-label>
+        <ion-label class="small_lbl2">{{'Total' | translate}}<span class="prize1">{{getCurrency()}}{{grandTotal}}</span>
+        </ion-label>
+      </div>
+
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <div class="btn_div" *ngIf="status == 'created'">
+      <ion-button (click)="changeStatus('rejected')" size="small" class="reject">
+        {{'Reject Order' | translate}}
+      </ion-button>
+      <ion-button (click)="changeStatus('accepted')" size="small" class="accept">
+        {{'Accept Order' | translate}}
+      </ion-button>
+    </div>
+
+    <div class="status_div" *ngIf="status == 'accepted' || status == 'ongoing' ">
+      <div style="width: 200px;">
+        <ion-select placeholder="Choose Status" [(ngModel)]="changeStatusOrder">
+          <ion-select-option value="ongoing">{{'Ongoing' |  translate}}</ion-select-option>
+          <ion-select-option value="cancel">{{'Cancel' | translate}}</ion-select-option>
+          <ion-select-option value="delivered">{{'Delivered' | translate}}</ion-select-option>
+        </ion-select>
+      </div>
+
+      <div>
+        <ion-button (click)="changeOrderStatus()" size="small">
+          {{'Update Status' | translate}}
+        </ion-button>
+      </div>
+    </div>
+
+    <ion-label class="green" *ngIf="status == 'delivered'">{{'Order Status' | translate}} :
+      {{'Order Delivered' | translate}}</ion-label>
+    <ion-label class="red" *ngIf="status == 'cancel'">{{'Order Cancelled by user' | translate}}</ion-label>
+  </ion-toolbar>
+</ion-footer>

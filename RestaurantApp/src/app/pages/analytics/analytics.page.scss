@@ -1,0 +1,36 @@
+.title{
+    font-weight: bold;
+    font-size: 1.4rem;
+}
+.borderred{
+    height: 1px;
+    width: 100%;
+    background: lightgray;
+    margin: 20px 0px;
+}
+.details{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 1px dashed gray;
+    padding: 10px 0px;
+    ion-label{
+        font-weight: bold;
+    }
+}
+.total{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px 0px;
+    .lbl{
+        font-weight: bold;
+        padding:20px
+    }
+    .amount{
+        background: #ff384c;
+        color: white;
+        padding: 20px;
+        font-weight: bold;
+    }
+}

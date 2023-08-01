@@ -1,0 +1,48 @@
+.btn_right{
+    position: relative;
+    z-index: 999999;
+}
+.img_menu{
+    width: 17px;
+    position: absolute;
+    right: 20px;
+}
+.div_content{
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+
+    .div_inner{
+        width: 100%;
+        margin-top: 15px;
+        padding-bottom: 15px;
+
+        .r{
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .lbl_number{
+            display: block;
+            font-size: 17px;
+            color: gray;
+            margin-left: 10px;
+        }
+        .img_visa{
+            float: right;
+            position: absolute;
+            top: 50%;
+            display: block;
+            font-size: 17px;
+            color: gray;
+            margin-left: 10px;
+            transform: translateY(-50%);
+            height: 15px !important;
+            width: 50px !important;
+        }
+    }
+}
+.btn_addcard{
+    margin-top: 30px;
+    --box-shadow: none !important;
+}

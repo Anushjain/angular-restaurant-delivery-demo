@@ -1,0 +1,139 @@
+<ion-header>
+  <ion-toolbar mode="ios">
+
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="mainContent">
+    <div class="noData" *ngIf="!cart?.length">
+      <img src="assets/runing.gif" alt="" class="noDataImg">
+      <ion-label>{{'Your Cart is Empty' | translate}}</ion-label>
+      <ion-label>{{'Please add your favourite food' | translate}} </ion-label>
+      <ion-button (click)="getCart()" expand="block" fill="outline">
+        {{'Browse your favourite restaurants' | translate}}
+      </ion-button>
+    </div>
+    <div *ngIf="cart?.length">
+      <ion-row style="padding-bottom: 10px; border-bottom: 1px solid lightgray;">
+        <ion-col size="4">
+          <div class="image_div" [style.backgroundImage]="'url('+cover+')'"></div>
+        </ion-col>
+        <ion-col size="8">
+          <ion-label class="restname">{{name}}</ion-label>
+          <ion-label class="address">{{address}}</ion-label>
+        </ion-col>
+      </ion-row>
+
+      <div *ngIf="cart?.length">
+        <div class="card_div">
+          <div class="card" *ngFor="let item of cart;let i = index">
+            <!-- Single -->
+            <div class="mainCat" *ngIf="item.quantiy > 0 && !item.selectedItem?.length">
+              <img [src]="item.cover" class="image_div" alt="">
+              <div class="desc_div">
+                <ion-label class="heading_lbl">{{item.name}}</ion-label>
+                <div class="ratting">
+                  <ion-icon [name]="item.ratting >= 1 ? 'star-outline':'star'"
+                    [color]="item.ratting >= 1 ? 'warning':'medium'">
+                  </ion-icon>
+                  <ion-icon [name]="item.ratting >= 2 ? 'star-outline':'star'"
+                    [color]="item.ratting >= 2 ? 'warning':'medium'">
+                  </ion-icon>
+                  <ion-icon [name]="item.ratting >= 3 ? 'star-outline':'star'"
+                    [color]="item.ratting >= 3 ? 'warning':'medium'">
+                  </ion-icon>
+                  <ion-icon [name]="item.ratting >= 4 ? 'star-outline':'star'"
+                    [color]="item.ratting >= 4 ? 'warning':'medium'">
+                  </ion-icon>
+                  <ion-icon [name]="item.ratting >= 5 ? 'star-outline':'star'"
+                    [color]="item.ratting >= 5 ? 'warning':'medium'">
+                  </ion-icon>
+                  ({{totalRatting}} {{'Rattings' | translate}})
+                </div>
+                <ion-label class="small_lbl">{{item.desc}}</ion-label>
+                <ion-label class="small_lbl">{{getCurrency()}} {{item.price}}</ion-label>
+              </div>
+              <div class="cartBtn2">
+                <ion-button (click)="removeQ(i)" fill="clear" size="small">
+                  <ion-icon name="remove"></ion-icon>
+                </ion-button>
+                <p class="qunitity">{{item.quantiy}}</p>
+                <ion-button (click)="addQ(i)" fill="clear" size="small">
+                  <ion-icon name="add"></ion-icon>
+                </ion-button>
+              </div>
+            </div>
+
+            <!-- End Of Sinle -->
+
+
+            <!-- Add-ons Product -->
+            <div *ngIf="item.quantiy > 0 && item.selectedItem?.length">
+              <div class="mainCat" *ngFor="let subItems of item.selectedItem;let j = index">
+                <img [src]="item.cover" class="image_div" alt="">
+                <div class="desc_div2">
+                  <ion-label class="heading_lbl">{{item.name}}</ion-label>
+                  <p *ngFor="let addods of subItems.item" style="margin: 0px;font-size: 10px;color: black;">
+                    - {{addods.name}}
+                    <span style="color: black;"> {{getCurrency()}} {{addods.value}}</span>
+                  </p>
+                </div>
+                <div class="cartBtn2">
+                  <ion-button (click)="removeQAddos(i,j)" fill="clear" size="small">
+                    <ion-icon name="remove"></ion-icon>
+                  </ion-button>
+                  <p class="qunitity">{{subItems.total}}</p>
+                  <ion-button (click)="addQAddos(i,j)" fill="clear" size="small">
+                    <ion-icon name="add"></ion-icon>
+                  </ion-button>
+                </div>
+              </div>
+            </div>
+            <!-- End Of Add-ons Product -->
+          </div>
+        </div>
+        <div class="coupones" (click)="openCoupon()">
+          <img src="assets/discount.png" class="badge" />
+          <ion-label class="title">{{'Apply coupon code' | translate}} <br>
+            <p *ngIf="coupon">{{'Coupon Applied' | translate}}</p>
+          </ion-label>
+        </div>
+        <div class="billing">
+          <div class="singleRow">
+            <ion-label class="headerTitle">{{'Item Total'}}</ion-label>
+            <ion-label class="price">{{getCurrency()}} {{totalPrice}}</ion-label>
+          </div>
+          <div class="singleRow">
+            <ion-label class="headerTitle">{{'Taxes & Charges' | translate}}</ion-label>
+            <ion-label class="price">{{getCurrency()}} {{serviceTax}}</ion-label>
+          </div>
+          <div class="singleRow">
+            <ion-label class="headerTitle">{{'Delivery Charges' | translate}}</ion-label>
+            <ion-label class="price">{{getCurrency()}} {{deliveryCharge}}</ion-label>
+          </div>
+          <div class="singleRow" *ngIf="coupon">
+            <ion-label class="headerTitle">{{'Dicount' | translate}}</ion-label>
+            <ion-label class="price">{{getCurrency()}} {{dicount}}</ion-label>
+          </div>
+          <div class="singleRow">
+            <ion-label class="headerTotal boldClass">{{'Grand Total' | translate}}</ion-label>
+            <ion-label class="priceTotal boldClass">{{getCurrency()}} {{grandTotal}}</ion-label>
+          </div>
+        </div>
+        <p class="instructions">
+          {{'Orders once placed cannot be cancelled and are non-refundable' | translate}}
+        </p>
+      </div>
+
+    </div>
+  </div>
+</ion-content>
+<ion-footer *ngIf="cart?.length">
+  <ion-toolbar color="primary">
+    <ion-label color="light">{{totalItem}} {{'ITEM' | translate}}</ion-label>
+    <ion-label color="light">{{getCurrency()}}{{grandTotal}} {{'plus taxes' | translate}}</ion-label>
+    <ion-button (click)="checkout()" slot="end" fill="clear" color="light">
+      {{'Checkout' | translate}}
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

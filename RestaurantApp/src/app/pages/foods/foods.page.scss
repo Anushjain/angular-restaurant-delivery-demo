@@ -1,0 +1,94 @@
+.mainContent{
+    padding: 20px;
+    // .cateName{
+    //     margin: 10px 0px;
+    //     font-size: 1.5rem;
+    //     color: black;
+    //     font-weight: bold;
+    // }
+    // .foods{
+    //     border-radius: 5px;
+    //     margin-top: 10px;
+    //     padding: 10px;
+    //     box-shadow: 0px 1px 14px 2px lightgrey;
+    //     .bgCover{
+    //         width: 90px;
+    //         height: 90px;
+    //         border-radius: 5px;
+    //         background-position: center;
+    //         background-repeat: no-repeat;
+    //         background-size: cover;
+    //     } 
+    //     .name{
+    //         margin: 0px;
+    //         font-size: 1.3rem;
+    //         font-weight: bold;
+    //         color: var(--ion-color-primary);
+    //     }
+    //     .description{
+    //         margin: 0px;
+    //         font-size: 1rem;
+    //     }
+    //     .price{
+    //         margin: 0px;
+    //         font-size: 1rem;
+    //     }
+    //     .cate{
+    //         margin: 0px;
+    //         font-size: 1rem;
+    //         color: var(--ion-color-primary);
+    //     }
+    // }
+
+
+    .head_lbl{
+        font-weight: 600;
+        font-size: 20px;
+        display: block;
+        margin-bottom: 10px;
+    }
+
+
+
+    .card_div{
+        display: flex;
+        flex-direction: row;
+        box-shadow: 0px 3px  6px rgba(0,0,0,0.2);
+        border-radius: 5px;
+        padding: 15px;
+        margin-bottom: 15px;
+        .back_image{
+            width: 90px;
+            height: 90px;
+            border-radius: 5px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .content_div{
+            padding-left: 20px;
+            ion-label {
+                display: flex;
+            }
+
+            .title{
+                font-weight: 600;
+                font-size: 16px;
+            }
+            .small{
+                color: gray;
+                font-size: 14px;
+            }
+            .veg{
+                color: green;
+            }
+            .nonVeg{
+                color: red;
+            }
+            .lonveg{
+                color: var(--ion-color-primary);
+            }
+        }
+    }
+    
+}

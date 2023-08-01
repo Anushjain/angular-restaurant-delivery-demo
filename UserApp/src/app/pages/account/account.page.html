@@ -1,0 +1,50 @@
+<ion-content>
+  <div class="main_content_div">
+    <div class="back_image" [style.backgroundImage]="'url(assets/imgs/back_image.jpg)'">
+    </div>
+    <div class="white_div" [style.backgroundImage]="'url('+photo+')'"></div>
+
+    <div class="content_div">
+      <ion-label class="usernane">{{name}}</ion-label>
+
+      <ion-label class="location">
+        {{email}}
+      </ion-label>
+
+
+      <div class="flex_div">
+        <ion-label (click)="goToselectRestaurants()">{{'Add Review' | translate}}</ion-label>
+        <ion-label (click)="goToEditProfile()">{{'Edit Profile' | translate}}</ion-label>
+        <ion-label (click)="goToAddress()">{{'Manage Address' | translate}}</ion-label>
+      </div>
+
+      <div class="segment_div">
+        <ion-label [class.active]="seg_id == 1" (click)="changeSegment(2)">{{'Reviews' | translate}}</ion-label>
+      </div>
+
+      <div *ngIf="!reviews?.length" class="segment_detail">
+        <img src="assets/imgs/paper.png" class="sleepy">
+        <ion-label class="sleepy_lbl">{{"You haven't written any review yet." | translate}}</ion-label>
+        <ion-button (click)="goToselectRestaurants()" expand="block" size="small" fill="clear">
+          {{'Add Review' | translate}}</ion-button>
+      </div>
+
+      <div *ngFor="let item of reviews">
+        <ion-row>
+          <ion-col size="4">
+            <img height="50" width="50" src="{{item.cover}}" alt="" onError="this.src='assets/imgs/paper.png'">
+          </ion-col>
+          <ion-col size="8">
+            <p style="font-weight: bold;"> {{item.vid.name}}</p>
+            {{item.descriptions}}
+          </ion-col>
+        </ion-row>
+      </div>
+      <ion-button class="logout" (click)="logout()" expand="block">
+        {{'Logout' | translate}}
+      </ion-button>
+
+    </div>
+  </div>
+
+</ion-content>

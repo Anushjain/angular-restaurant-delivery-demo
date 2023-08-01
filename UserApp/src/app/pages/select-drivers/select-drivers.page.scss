@@ -1,0 +1,109 @@
+ion-modal.modalContact {
+    .modal-wrapper{
+        width: 90% !important;
+    }
+    &.bottom {
+        align-items: flex-end;
+    }
+    --height: auto;
+    .ion-page {
+        position: relative;
+        display: block;
+        contain: content;
+        .inner-content {
+            max-height: 80vh;
+            overflow: auto;
+            // padding: 10px;
+            border-radius: 10px;
+        }
+    }
+}
+
+.div_header{
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 15px;
+    position: relative;
+    .img_cross{
+        width: 35px;
+        position: absolute;
+        right: 20px;
+    }
+    .lbl_contact{
+        font-size: 20px;
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+    }
+}
+.div_content{
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid lightgray;
+    padding: 10px;
+    .iconPerson{
+        font-size: 3rem;
+    }
+    .title{
+        text-align: center;
+        font-size: .8rem;
+        color: black;
+        margin: 0px;
+    }
+    .your{
+        text-align: center;
+        font-size: .8rem;
+        color: black;
+        margin: 0px;
+    }
+    .score{
+        text-align: center;
+        font-size: 1.2rem;
+        color: black;
+        margin: 0px;
+        font-weight: bold;
+    }
+}
+.content{
+    padding: 10px;
+    .inputs{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        ion-input {
+            border-radius: 5px;
+            border: 1px solid lightgray;
+            --padding-start: 10px;
+            margin: 15px 0px;
+        }
+    }   
+     .tabs_prpl{
+      background: var(--ion-color-secondary);
+      color: white;
+      height:30px;
+      line-height:20px;
+      margin-bottom: 5px;
+      font-size:11px;
+      font-weight:500;
+      letter-spacing: 0.5px;
+    }
+    .pdd_left{
+      padding-left:20px;
+    } 
+}
+
+ .div_btn{
+    .cancel{
+        border-top: 1px solid lightgray;
+    }
+    .save{
+        border-top: 1px solid lightgray;
+        border-left: 1px solid lightgray;
+        background: #f9f9f9;
+    }
+}

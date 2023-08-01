@@ -1,0 +1,20 @@
+.header{
+  .bts{
+    display: flex;
+    flex-direction: row-reverse;
+    padding: 10px;
+  }
+  .desc{
+    .title{
+      margin: 0px;
+      padding: 10px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .details{
+      margin: 0px;
+      padding: 0px 10px;
+      font-size: 14px;
+    }
+  }
+}

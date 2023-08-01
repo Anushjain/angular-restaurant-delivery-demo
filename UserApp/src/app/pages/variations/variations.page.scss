@@ -1,0 +1,95 @@
+.header{
+  border-bottom: 1px solid lightgray;
+  .bts{
+    display: flex;
+    flex-direction:row;
+    justify-content: space-around;
+    padding-bottom: 10px;
+  }
+  .desc{
+    .title{
+      margin: 0px;
+      padding: 10px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .details{
+      margin: 0px;
+      padding: 0px 10px;
+      font-size: 14px;
+    }
+  }
+}
+.padder
+{
+  padding-bottom: 60px;
+}
+.cartItems{
+  padding: 10px 5px;
+  .name{
+   font-size: 18px;
+    font-weight: bold;
+    margin: 0px; 
+  }
+  .details{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; 
+    .names{
+      .subDetails{
+        margin: 0px;
+        font-size: 14px;
+      }
+    }
+    .cartBtn2{
+        position: absolute;
+        right: 15px;
+        width: 80px;
+        display: flex;
+        background: white;
+        .qunitity{
+            font-weight: bold;
+            margin-top: 8px;
+        }
+    }
+  }
+}
+.sameProduct{
+  padding: 5px;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  .desc{
+    padding: 0px 0px 10px 0px;
+    .name{
+      font-size: 18px;
+      font-weight: bold;
+      margin: 0px;
+    }
+    .selectedItem{
+      margin: 0px;
+      font-size: 14px;
+      display: flex;
+      flex-direction: column;
+    }
+    .cartBtn2{
+        position: absolute;
+        right: 15px;
+        width: 80px;
+        display: flex;
+        background: white;
+        .qunitity{
+            font-weight: bold;
+            margin-top: 8px;
+        }
+    }
+  }
+  
+}
+.footers{
+  position:fixed;
+  bottom: 10px;
+  width: 100%;
+  padding: 0px 10px;
+}

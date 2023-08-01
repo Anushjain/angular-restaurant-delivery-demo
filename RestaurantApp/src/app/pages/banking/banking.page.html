@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button mode="md"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{'Confirm Bank' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="div_inner_slider" *ngIf="!cid">
+    <p class="head_lbl">{{'Enter Card Details' |  translate}}</p>
+    <ion-input type="text" [(ngModel)]="name" [placeholder]="('Your name' | translate )" class="bordered"></ion-input>
+    <ion-input type="email" [(ngModel)]="email"  [placeholder]="('Your name' | translate )" class="bordered"></ion-input>
+    <ion-input type="number" [(ngModel)]="number" [placeholder]="('Card Number' | translate )" class="bordered"></ion-input>
+    <ion-row class="ion-no-padding" style="margin-top: 20px;">
+      <ion-col size="5.5" class="bordered">
+        <ion-datetime pickerFormat="MM/YYYY" [(ngModel)]="date" [min]="getMin()" [max]="getMax()"
+          displayFormat="MM/YYYY" [placeholder]="('Expire Date' | translate )">
+        </ion-datetime>
+      </ion-col>
+      <ion-col size="1"></ion-col>
+      <ion-col size="5.5" class="bordered">
+        <ion-input [(ngModel)]="cvc" type="number" [placeholder]="('CVC' | translate )"></ion-input>
+      </ion-col>
+    </ion-row>
+    <div class="instructions">
+      <p class="bold">{{'Instructions' | translate}}</p>
+      <p class="normal">{{'This is Testing Mode use following details' | translate}} </p>
+      <p class="info">{{'Card Number' | translate}} : 4242 4242 4242 4242</p>
+      <p class="info">{{'CVC' | translate}} : 220</p>
+      <p class="info">{{'Expire Date' | translate}} : {{'Future Years' | translate}}</p>
+    </div>
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="onslide2()" style="padding-right: 10px;">
+      <ion-fab-button color="primary">
+        <ion-icon name="arrow-forward"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </div>
+  <div class="div_inner_slider" *ngIf="cid">
+    <p class="head_lbl">{{'Enter Bank Details' | translate}}</p>
+    <ion-input type="text" [(ngModel)]="account_holder_name" [placeholder]="('Account Holdername' | translate )" class="bordered">
+    </ion-input>
+    <ion-input type="number" [(ngModel)]="routing_number" [placeholder]="('Routing Number' | translate )" class="bordered">
+    </ion-input>
+    <ion-input type="number" [(ngModel)]="account_number" [placeholder]="('Account Number' | translate )" class="bordered">
+    </ion-input>
+    <div class="instructions">
+      <p class="bold">{{'Instructions' | translate}}</p>
+      <p class="normal">{{'This is Testing Mode use following details' | translate}} </p>
+      <p class="info">{{'Routing number' | translate}} : 11 00 00 000</p>
+      <p class="info">{{'Account number' | translate}} : 000 123 456 789</p>
+    </div>
+    <ion-button style="margin-top: 20px;" (click)="createBankInfo()" expand="block" shape="round">
+      {{'Submit' | translate}}
+    </ion-button>
+  </div>
+
+</ion-content>

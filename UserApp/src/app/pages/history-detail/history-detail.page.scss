@@ -1,0 +1,157 @@
+.header_div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .support_lbl{
+        margin-right: 20px;
+        color: red;
+    }
+}
+
+.main_content_div{
+    width: 100%;
+    padding: 20px;
+
+    .line_div{
+        height: 1px;
+        width: 100%;
+        background: lightgray;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    ion-label {
+        display: block;
+    }
+
+    .header_lbl{
+        font-weight: 600;
+        font-size: 22px;
+    }
+    .res_name{
+        margin-top: 20px;
+        font-weight: 600;
+        font-size: 18px;
+    }
+    .res_location{
+        font-size: 14px;       
+        width: 90%;
+    }
+
+    .flex_div{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 20px;
+        .food_title{
+            font-size: 15px;
+            font-weight: bold;
+        }
+        .food_price{
+            font-size: 15px;
+        }
+        .fav_lbl{
+            color: red;
+            font-size: 12px;
+            border: 1px solid red;
+            border-radius: 25px;
+            padding: 2px 10px;
+        }
+    }
+
+    .subNames{
+        border-bottom: 1px dashed lightgray;
+        padding-bottom: 5px;
+        .food_title{
+            font-size: 15px;
+            font-weight: bold;
+            .veg{
+                height: 12px;
+                width: 12px;
+            }
+            .rate_lbl{
+                background: #b2d9b2;
+                border: 1px solid #7bdb7b;
+                padding: 3px 8px;
+                border-radius: 5px;
+                font-size: 14px;
+                font-weight: 600;
+            }
+        }
+        .flex_titles{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            .sub_name{
+                margin: 0px;
+                color: black;
+                font-size: 12px;
+            }
+        }
+    }
+
+    .card_div{
+        border-bottom: 1px dashed lightgray;
+        padding-bottom: 5px;
+        .upper_div{
+            display: flex;
+            align-items: center;
+
+            .veg{
+                width: 12px;
+                height: 12px;
+            }
+        }
+
+        .lower_div{
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;;
+            .rate_lbl{
+                background: #b2d9b2;
+                border: 1px solid #7bdb7b;
+                padding: 3px 8px;
+                border-radius: 5px;
+                font-size: 14px;
+                font-weight: 600;
+            }
+        }
+    }
+
+    .prise_lbl{
+        position: absolute;
+        right: 20px;
+    }
+
+    .head_gray{
+        color: gray;
+        font-size: 13px;
+    }
+    .small_lbl{
+        font-size: 12px;
+        font-weight: 600;
+        margin-bottom: 15px;
+    }
+    .red_lbl{
+        color: red;
+        text-align: center;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+}
+
+.btn_div{
+    display: flex;
+    justify-content: center;
+
+    ion-button{
+        font-weight: 600;
+        --border-radius: 5px;
+        width: 130px;
+    }
+    .ratae{
+        --background: var(--ion-color-warning);;
+    }
+}

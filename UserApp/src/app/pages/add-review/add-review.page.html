@@ -1,0 +1,78 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text="" mode="md"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{'Add Review' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="main_content_div">
+    <ion-label class="head_lbl">{{'Rate your Experiance' | translate}}</ion-label>
+
+    <div class="flex_div">
+      <div class="first_div">
+        <div class="rate_div" [class.rate1]="rate==1" [class.rate2]="rate==2" [class.rate3]="rate==3"
+          [class.rate4]="rate==4" [class.rate5]="rate==5" (click)="onClick(1)"><span>1</span>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <div class="rate_div" [class.rate2]="rate==2" [class.rate3]="rate==3" [class.rate4]="rate==4"
+          [class.rate5]="rate==5" (click)="onClick(2)"><span>2</span>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <div class="rate_div" [class.rate3]="rate==3" [class.rate4]="rate==4" [class.rate5]="rate==5"
+          (click)="onClick(3)"><span>3</span>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <div class="rate_div" [class.rate4]="rate==4" [class.rate5]="rate==5" (click)="onClick(4)"><span>4</span>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <div class="rate_div" [class.rate5]="rate==5" (click)="onClick(5)"><span>5</span>
+          <ion-icon name="star"></ion-icon>
+        </div>
+      </div>
+      <div class="second_div">
+        <ion-label *ngIf="rate==1" class="rate1">{{'Horrible' | translate}}</ion-label>
+        <ion-label *ngIf="rate==2" class="rate2">{{'Bad' | translate}}</ion-label>
+        <ion-label *ngIf="rate==3" class="rate3">{{'Average' | translate}}</ion-label>
+        <ion-label *ngIf="rate==4" class="rate4">{{'Good' | translate}}</ion-label>
+        <ion-label *ngIf="rate==5" class="rate5">{{'Excellent' | translate}}</ion-label>
+      </div>
+    </div>
+
+    <div class="line_div"></div>
+
+    <div class="lower_div" (click)="openCamera()" *ngIf="image ==''">
+      <ion-label class="head_lbl2">{{'Add Photos' | translate}}</ion-label>
+
+      <div class="gray_div">
+        <ion-icon class="camera" name="camera"></ion-icon>
+      </div>
+    </div>
+    <div class="lower_div" (click)="openCamera()" *ngIf="image !=''">
+
+      <div class="gray_div" class="back_image" [style.backgroundImage]="'url('+image+')'">
+      </div>
+    </div>
+    <div class="line_div"></div>
+
+    <div class="lower_div">
+      <ion-label class="head_lbl2">{{'Anything else you want to add' | translate}} <span>0/100</span></ion-label>
+      <ion-textarea rows="4" [(ngModel)]="descriptions" placeholder="Write detailed review here.."></ion-textarea>
+
+      <ion-label class="small_gray">
+        {{'Be polite and friendly. This is a place for love and feedback, not hate. You can use @friends and #tags as well.' | translate}}
+      </ion-label>
+    </div>
+    <div class="line_div"></div>
+
+  </div>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-button (click)="addReview()" expand="block" class="sub_btn">
+      {{'Submit Dinimg Review' | translate}}
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

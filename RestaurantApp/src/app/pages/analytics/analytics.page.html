@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{'Analytics' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div *ngIf="loaded">
+    <ion-label class="title">{{'Statistics' | translate}}</ion-label>
+    <ion-item lines="none">
+      <ion-label>{{'Report' | translate}}</ion-label>
+      <ion-select [(ngModel)]="report" (ionChange)="changeMode()">
+        <ion-select-option value="all">{{'All' | translate}}</ion-select-option>
+        <ion-select-option value="now">{{'Current Month' | translate}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <div class="borderred"></div>
+    <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
+      [options]="pieChartOptions" [colors]="pieChartColors" [legend]="pieChartLegend">
+    </canvas>
+    <div class="borderred"></div>
+    <ion-label class="title">{{'Order Details' | translate}}</ion-label>
+    <div class="borderred"></div>
+    <ion-row>
+      <ion-col size="12" *ngFor="let item of pieChartLabels;let i = index">
+
+        <div class="details">
+          <ion-label>{{item}}</ion-label>
+          <ion-label>{{pieChartData[i]}}</ion-label>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <div class="total">
+      <ion-label class="lbl">{{'Total Earnings' | translate}}</ion-label>
+      <ion-label class="amount">{{getCurrency()}}{{totalEarning}}</ion-label>
+    </div>
+  </div>
+  <div *ngIf="!loaded" style="display: flex;flex-direction: column;justify-content: center;align-items: center;">
+    <ion-spinner color="primary" name="crescent"></ion-spinner>
+  </div>
+</ion-content>

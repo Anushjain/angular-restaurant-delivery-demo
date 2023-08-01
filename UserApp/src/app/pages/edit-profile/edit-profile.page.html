@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar>
+    <div class="header_div">
+      <ion-buttons slot="start">
+        <ion-back-button text="" mode="md" color="dark"></ion-back-button>
+      </ion-buttons>
+      <ion-label class="head_lbl">{{'Edit Profile' | translate}}</ion-label>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="main_content_div">
+    <div class="back_image" [style.backgroundImage]="'url(assets/imgs/back_image.jpg)'">
+    </div>
+
+    <div class="lower_div">
+      <!-- <div class="white_div" (click)="cover()" [style.backgroundImage]="'url('+profilePic+')'"></div> -->
+      <img class="white_div" [src]="profilePic" alt="" (click)="cover()" onError="this.src='assets/imgs/user.jpg'">
+      <div class="line_div"></div>
+
+      <div class="form_div">
+        <ion-item class="ion-no-padding">
+          <ion-label position="floating">{{'Name' | translate}}</ion-label>
+          <ion-input type="text" [(ngModel)]="name"></ion-input>
+        </ion-item>
+
+        <ion-item class="ion-no-padding">
+          <ion-label position="floating">{{'Handle' | translate}}</ion-label>
+          <ion-input type="text" [(ngModel)]="handle"></ion-input>
+        </ion-item>
+
+        <ion-item class="ion-no-padding">
+          <ion-label position="floating">{{'Phone Number' | translate}}</ion-label>
+          <ion-input type="number" [(ngModel)]="phone"></ion-input>
+        </ion-item>
+
+        <ion-item class="ion-no-padding">
+          <ion-label position="floating">{{'Description' | translate}}</ion-label>
+          <ion-input type="text" [(ngModel)]="descriptions"></ion-input>
+        </ion-item>
+
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-button (click)="update()" expand="block" class="sub_btn">
+      {{'Save Profile' | translate}}
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

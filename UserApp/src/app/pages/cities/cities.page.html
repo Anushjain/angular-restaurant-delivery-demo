@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>{{'Select City' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="noData" *ngIf="!dummy?.length && !cities?.length" [style.backgroundImage]="'url(assets/nothing.jpg)'">
+  </div>
+  <p class="ion-text-center" *ngIf="!dummy?.length && !cities?.length">{{'No Cities Found' | translate}}</p>
+  <div *ngFor="let item of dummy">
+    <ion-list lines="none">
+      <ion-item>
+        <ion-thumbnail slot="start">
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </ion-thumbnail>
+        <ion-label>
+          <h3>
+            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+          </h3>
+          <p>
+            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+          </p>
+          <p>
+            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+          </p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+  <div>
+    <ion-list>
+      <ion-radio-group [(ngModel)]="selectedCity">
+        <ion-item *ngFor="let item of cities">
+          <ion-label>{{item.name}}</ion-label>
+          <ion-radio mode="md" slot="start" [value]="item.id"></ion-radio>
+        </ion-item>
+
+      </ion-radio-group>
+    </ion-list>
+  </div>
+  <div class="btns">
+    <img src="assets/imgs/en.png" (click)="changeLng('en')"
+      [ngClass]="getClassName() == 'en' ? 'flagActive':'flagDeactive'" alt="">
+    <img src="assets/imgs/spanish.png" (click)="changeLng('spanish')"
+      [ngClass]="getClassName() == 'spanish' ? 'flagActive':'flagDeactive'" alt="">
+  </div>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf="selectedCity" (click)="goNext()">
+    <ion-fab-button>
+      <ion-icon name="arrow-forward-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

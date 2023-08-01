@@ -1,0 +1,84 @@
+<ion-header mode="ios">
+  <!-- <ion-toolbar [hidden]="headerHidden" class="animated fadeInDown" *ngIf="haveLocation"> -->
+  <ion-toolbar>
+    <div class="deliveryAddress">
+      <img src="assets/pin.png" alt="" class="pin" (click)="changeLocation()">
+      <p class="address" (click)="changeLocation()"> {{cityName | slice:0:25}}</p>
+      <div class="userPhoto" [style.backgroundImage]="'url('+ profile +')'" *ngIf="profile"></div>
+      <div class="userPhoto" [style.backgroundImage]="'url(assets/user.png)'" *ngIf="!profile"></div>
+    </div>
+    <div class="div_searchbar">
+      <ion-searchbar animated="true" mode="ios" [placeholder]="('Search Restaurants' | translate) || '&nbsp;'"
+        (ionChange)="onSearchChange($event)" [debounce]="250" class="search_bar"></ion-searchbar>
+    </div>
+  </ion-toolbar>
+  <div class="chips_div animated fadeInDown" *ngIf="allRest?.length">
+    <ion-label class="chip" *ngFor="let item of chips;let i = index" (click)="addFilter(i)">{{item}}</ion-label>
+  </div>
+  <ion-item>
+    <ion-label> <span *ngIf="!nearme">{{'Near Me' | translate}}</span> <span
+        *ngIf="nearme">{{'All Rest' | translate}}</span> </ion-label>
+    <ion-toggle slot="end" (ionChange)="nearMe()" [(ngModel)]="nearme"></ion-toggle>
+  </ion-item>
+</ion-header>
+
+<ion-content [scrollEvents]="true" (ionScroll)="onScroll($event)">
+  <div class="main_content_div">
+    <ion-slides [options]="slideOpts" *ngIf="banners?.length && allRest?.length">
+      <ion-slide *ngFor="let item of banners" (click)="openOffers(item)">
+        <div class="back_image" [ngStyle]="{'background-image':'url('+item.banner+')'}">
+        </div>
+      </ion-slide>
+    </ion-slides>
+    <div class="noData" *ngIf="!dummy?.length && !allRest?.length" [style.backgroundImage]="'url(assets/nothing.jpg)'">
+
+    </div>
+    <p style="font-weight: bold;text-align: center;" *ngIf="!dummy?.length && !allRest?.length">
+      {{'No Restaurants Found!' | translate}}
+    </p>
+    <div *ngFor="let item of dummy">
+      <ion-list>
+        <ion-item>
+          <ion-thumbnail slot="start">
+            <ion-skeleton-text animated></ion-skeleton-text>
+          </ion-thumbnail>
+          <ion-label>
+            <h3>
+              <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+            </h3>
+            <p>
+              <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+            </p>
+            <p>
+              <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+            </p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
+    <div class="card_div">
+      <ion-row [className]="item && item.status =='close' ? 'cardClosed ion-no-padding':'card ion-no-padding'"
+        *ngFor="let item of allRest">
+        <ion-col size="4">
+          <div class="image_div" (click)="openMenu(item)" [style.backgroundImage]="'url('+item.cover+')'"></div>
+        </ion-col>
+        <ion-col size="6">
+          <div class="desc_div" (click)="openMenu(item)">
+            <ion-label class="heading_lbl">{{item.name}}</ion-label>
+            <ion-label class="small_lbl">{{getCusine(item.cusine)}}</ion-label>
+            <ion-label class="small_lbl">{{item.dishPrice}}{{getCurrency()}} {{'per person' | translate}} |
+              {{item.time}}
+              {{'min' | translate}}</ion-label>
+
+          </div>
+        </ion-col>
+        <ion-col size="2">
+          <div class="ratting">
+            <ion-label class="rateNumber">{{item.ratting}}</ion-label>
+          </div>
+          <p class="closed" *ngIf="item && item.status =='close'">{{'Closed' | translate}}</p>
+        </ion-col>
+      </ion-row>
+    </div>
+  </div>
+</ion-content>

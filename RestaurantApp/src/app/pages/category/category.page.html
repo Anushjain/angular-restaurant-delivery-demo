@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button text="" mode="md"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{'Categories' | translate}}</ion-title>
+    <ion-button (click)="addNewCat()" fill="clear" color="light" slot="end">
+      <ion-icon slot="icon-only" name="add"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="mainContent">
+    <h2 class="ion-text-center" *ngIf="!dummy?.length && !categories?.length">{{'No Category Found' | translate}}</h2>
+    <ion-item *ngFor="let item of dummy">
+      <ion-thumbnail slot="start">
+        <ion-skeleton-text animated></ion-skeleton-text>
+      </ion-thumbnail>
+      <ion-label>
+        <h3>
+          <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+        </h3>
+        <p>
+          <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+        </p>
+        <p>
+          <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+        </p>
+      </ion-label>
+    </ion-item>
+    <ion-item lines="none" *ngFor="let item of categories;" (click)="edit(item)">
+      <ion-label>{{item.name}}</ion-label>
+      <!-- <ion-icon slot="end" name="pencil-sharp"></ion-icon> -->
+      <img src="assets/imgs/edit.png" class="edt_icn">
+    </ion-item>
+  </div>
+</ion-content>

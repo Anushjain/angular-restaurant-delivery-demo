@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button text="" mode="md"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{'Foods' | translate}}</ion-title>
+    <ion-button (click)="addnew()" slot="end" fill="clear" color="light">
+      <ion-icon slot="icon-only" name="add"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="mainContent">
+    <h2 class="ion-text-center" *ngIf="!dummy?.length && !categories?.length">{{'No Foods Found' | translate}}</h2>
+    <ion-item *ngFor="let item of dummy">
+      <ion-thumbnail slot="start">
+        <ion-skeleton-text animated></ion-skeleton-text>
+      </ion-thumbnail>
+      <ion-label>
+        <h3>
+          <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+        </h3>
+        <p>
+          <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+        </p>
+        <p>
+          <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+        </p>
+      </ion-label>
+    </ion-item>
+    <div *ngFor="let item of categories">
+      <ion-label class="head_lbl">{{item.name}}</ion-label>
+
+      <div *ngFor="let food of foods;">
+        <span *ngIf="item.id == food.cid.id" class="card_div" (click)="foodsInfo(food)">
+          <!-- <div class="back_image" [style.backgroundImage]="'url('+food.cover+')'"></div> -->
+          <img [src]="food.cover" class="back_image" alt="">
+          <div class="content_div">
+            <ion-label class="title">{{food.name}}</ion-label>
+            <ion-label class="small">{{food.desc}}</ion-label>
+            <ion-label *ngIf="food.veg" class="veg">Veg</ion-label>
+            <ion-label *ngIf="!food.veg" class="nonVeg">Non Veg</ion-label>
+
+            <ion-label class="title">{{getCurrency()}} {{food.price}}</ion-label>
+          </div>
+        </span>
+      </div>
+
+    </div>
+
+
+  </div>
+</ion-content>

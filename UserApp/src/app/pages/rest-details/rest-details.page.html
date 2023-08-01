@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button mode="md"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="main_content_div">
+    <div class="upper_div">
+
+      <div class="back_image" [style.backgroundImage]="'url('+cover+')'">
+
+        <div class="open_div" *ngIf="isOpen">{{'open' | translate}}</div>
+        <div class="close_div" *ngIf="!isOpen">{{'Closed' | translate}}</div>
+        <ion-badge class="menu_badge"
+          [ngStyle]="{'background-color': ratting>=80?'#00a573':ratting>=70 && ratting<79?'#fcb813':'#d24141'}"
+          mode="ios">
+          {{ratting}}</ion-badge>
+
+        <div class="abs_div">
+          <ion-label class="bold_lbl">{{name}}</ion-label>
+          <ion-label class="small_lbl">{{cusine}}</ion-label>
+        </div>
+      </div>
+
+      <div class="content_div">
+        <ion-label class="addr_lbl">
+          <ion-icon name="navigate-outline"></ion-icon> : {{address}}
+        </ion-label>
+        <ion-label class="addr_lbl">
+          <ion-icon name="alarm-outline"></ion-icon>: {{open}} : {{close}}
+        </ion-label>
+        <ion-label class="addr_lbl">
+          <ion-icon name="mail-unread-outline"></ion-icon>: {{email}}
+        </ion-label>
+        <ion-label class="addr_lbl">
+          <ion-icon name="call-outline"></ion-icon>: {{phone}}
+        </ion-label>
+      </div>
+    </div>
+
+    <div class="slider_div">
+      <ion-slides [options]="slideOpts">
+        <ion-slide *ngFor="let item of images">
+          <div class="slide_image" [ngStyle]="{'background-image':'url('+item+')'}"></div>
+        </ion-slide>
+      </ion-slides>
+    </div>
+
+    <ion-label class="desc">{{descritions}}</ion-label>
+
+  </div>
+</ion-content>

@@ -1,0 +1,135 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button text="" mode="md"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{'Venue Profile' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="mainContent">
+    <p class="lbl">{{'Restaurant Name' | translate}}</p>
+    <ion-input class="inputText" [(ngModel)]="name" type="text" placeholder="Enter your restaurant name"></ion-input>
+    <p class="lbl">{{'Restaurant Locations' | translate}}</p>
+    <ion-searchbar class="ion-no-padding" mode="ios" [(ngModel)]="address" (ionInput)="updateSearch()"
+      (click)="openMap()" (ionCancel)="dismiss()">
+    </ion-searchbar>
+    <p class="lbl">{{'Per Person Dish' |translate}} $</p>
+    <ion-input class="inputText" [(ngModel)]="dishPrice" type="number" placeholder="$"></ion-input>
+
+    <p class="lbl">{{'E-mail ID' | translate}}</p>
+    <ion-input class="inputText" [(ngModel)]="email" type="email" placeholder="email"></ion-input>
+
+    <p class="lbl">{{'Phone' | translate}}</p>
+    <ion-input class="inputText" [(ngModel)]="phone" type="number" placeholder="Phone Number"></ion-input>
+
+    <p class="lbl">{{'Opening Time' | translate}}</p>
+    <ion-item lines="none" class="ion-no-padding">
+      <ion-datetime [(ngModel)]="openTime" display-format="hh:mm A" placeholder="Selecte time"></ion-datetime>
+    </ion-item>
+
+    <p class="lbl">{{'Closing Time' | translate}}</p>
+    <ion-item lines="none" class="ion-no-padding">
+      <ion-datetime [(ngModel)]="closeTime" display-format="hh:mm A" placeholder="Selecte time"></ion-datetime>
+    </ion-item>
+
+
+    <p class="lbl">{{'Estimated Delivery time' | translate}}</p>
+    <ion-item lines="none" class="ion-no-padding">
+      <ion-datetime [(ngModel)]="time" display-format="mm" placeholder="Selecte time"></ion-datetime>
+    </ion-item>
+
+    <p class="lbl">{{'Restaurant Description' | translate}}</p>
+    <ion-textarea class="inputText" [(ngModel)]="descritions" rows="5" placeholder="Enter your restaurant description">
+    </ion-textarea>
+    <ion-item lines="none" style="margin-top: 10px;">
+      <ion-label>{{'Select Cuisine' | translate}}</ion-label>
+      <!-- <p class="lbl">Select Cuisine</p> -->
+      <ion-select [(ngModel)]="cusine" multiple="true">
+        <ion-select-option value="Italian">Italian</ion-select-option>
+        <ion-select-option value="Mexican">Mexican</ion-select-option>
+        <ion-select-option value="Chinese">Chinese</ion-select-option>
+        <ion-select-option value="Indian">Indian</ion-select-option>
+        <ion-select-option value="Japanese">Japanese</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <p class="lbl">{{'Upload Your Restaurant Cover Image' | translate}}</p>
+    <div class="coverPlaceholder" (click)="cover()" *ngIf="!coverImage || coverImage ==''">
+      <ion-icon name="cloud-upload-outline" color="primary"></ion-icon>
+      <p>{{'Upload your' | translate}} <br> {{'cover image here' | translate}}</p>
+    </div>
+    <div class="coverReal" (click)="cover()" [style.backgroundImage]="'url('+coverImage+')'"
+      *ngIf="coverImage && coverImage !=''">
+    </div>
+    <!-- <div class="div_img back_img" ></div> -->
+    <p class="lbl">{{'Upload Gallery Images' | translate}}</p>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="4">
+          <div class="galleryPlaceholder" (click)="others('1')" *ngIf="!image1 || image1 ==''">
+            <ion-icon name="cloud-upload-outline" color="primary"></ion-icon>
+            <p>{{'Image' | translate}} 1</p>
+          </div>
+          <div class="galleryReal" (click)="others('1')" [style.backgroundImage]="'url('+image1+')'"
+            *ngIf="image1 && image1 !=''">
+          </div>
+        </ion-col>
+        <ion-col size="4">
+          <div class="galleryPlaceholder" (click)="others('2')" *ngIf="!image2 || image2 ==''">
+            <ion-icon name="cloud-upload-outline" color="primary"></ion-icon>
+            <p>{{'Image' | translate}} 2</p>
+          </div>
+          <div class="galleryReal" (click)="others('2')" [style.backgroundImage]="'url('+image2+')'"
+            *ngIf="image2 && image2 !=''">
+          </div>
+        </ion-col>
+        <ion-col size="4">
+          <div class="galleryPlaceholder" (click)="others('3')" *ngIf="!image3 || image3 ==''">
+            <ion-icon name="cloud-upload-outline" color="primary"></ion-icon>
+            <p>{{'Image' | translate}} 3</p>
+          </div>
+          <div class="galleryReal" (click)="others('3')" [style.backgroundImage]="'url('+image3+')'"
+            *ngIf="image3 && image3 !=''">
+          </div>
+        </ion-col>
+        <ion-col size="4">
+          <div class="galleryPlaceholder" (click)="others('4')" *ngIf="!image4 || image4 ==''">
+            <ion-icon name="cloud-upload-outline" color="primary"></ion-icon>
+            <p>{{'Image' | translate}} 4</p>
+          </div>
+          <div class="galleryReal" (click)="others('4')" [style.backgroundImage]="'url('+image4+')'"
+            *ngIf="image4 && image4 !=''">
+          </div>
+        </ion-col>
+        <ion-col size="4">
+          <div class="galleryPlaceholder" (click)="others('5')" *ngIf="!image5 || image5 ==''">
+            <ion-icon name="cloud-upload-outline" color="primary"></ion-icon>
+            <p>{{'Image' | translate}} 5</p>
+          </div>
+          <div class="galleryReal" (click)="others('5')" [style.backgroundImage]="'url('+image5+')'"
+            *ngIf="image5 && image5 !=''">
+          </div>
+        </ion-col>
+        <ion-col size="4">
+          <div class="galleryPlaceholder" (click)="others('6')" *ngIf="!image6 || image6 ==''">
+            <ion-icon name="cloud-upload-outline" color="primary"></ion-icon>
+            <p>{{'Image' | translate}} 6</p>
+          </div>
+          <div class="galleryReal" (click)="others('6')" [style.backgroundImage]="'url('+image6+')'"
+            *ngIf="image6 && image6 !=''">
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-button (click)="submit()" expand="block">
+      {{'Submit' | translate}}
+    </ion-button>
+    <ion-button (click)="closeIt()" expand="block" *ngIf="status == 'open'">
+      {{'Close Restaurant' | translate}}
+    </ion-button>
+    <ion-button (click)="openIt()" expand="block" *ngIf="status == 'close'">
+      {{'Open Restaurant' | translate}}
+    </ion-button>
+  </div>
+</ion-content>

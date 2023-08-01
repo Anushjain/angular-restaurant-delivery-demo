@@ -1,0 +1,27 @@
+.title{
+    background: #f3f3f3;
+    color: var(--ion-color-primary);
+    font-size: 1.3rem;
+    text-align: center;
+    font-weight: bold;
+    margin: 0px;
+    padding: 10px;
+}
+.flex_box{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid lightgray;
+    .name{
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
+}
+.driver{
+    padding: 10px;
+    ion-textarea{
+        border-bottom: 1px solid lightgray;
+    }
+}

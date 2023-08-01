@@ -1,0 +1,26 @@
+.div_inner_slider{
+    .head_lbl{
+        font-weight: bold;
+        text-align: center;
+        font-size: 1.5rem;
+    }
+    .bordered{
+        border-bottom: 1px solid lightgray;
+        ion-datetime {
+           --padding-top: 0px;
+           --padding-bottom: 0px;
+        }
+    }
+    .instructions{
+        margin-top: 20px;
+        font-size: 1.2rem;
+        font-weight: bold;
+        .normal{
+            font-size: 1rem;
+        }
+        .info{
+            margin: 0px;
+            color: gray;
+        }
+    }
+}

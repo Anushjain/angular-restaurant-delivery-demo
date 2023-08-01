@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button text="" mode="md"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Food Category</ion-title>
+    <ion-button (click)="addnew()" slot="end" fill="clear" color="light">
+      <ion-icon slot="icon-only" name="add"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="main_content_div">
+    <div class="back_image"></div>
+    <ion-input type="text" placeholder="Category Name"></ion-input>
+
+    <ion-button (click)="addnew()" expand="block">
+      Add Category
+    </ion-button>
+  </div>
+</ion-content>

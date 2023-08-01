@@ -1,0 +1,82 @@
+<ion-content>
+
+  <div class="main_content_div">
+
+    <div class="back_image" [style.backgroundImage]="'url(assets/imgs/back_image.jpg)'">
+
+    </div>
+    <div class="white_div" [style.backgroundImage]="'url('+cover+')'"></div>
+
+    <div class="content_div">
+      <ion-label class="usernane">{{name}}</ion-label>
+
+      <ion-label class="location">
+        <ion-icon class="pin" name="location-outline"></ion-icon>{{address}}
+      </ion-label>
+
+      <ion-label class="location" style="color: black;">{{open}} - {{close}}</ion-label>
+
+      <div class="flex_div">
+        <ion-label (click)="goToAddCategoty()">{{'Add Category' | translate}}</ion-label>
+        <ion-label (click)="AddFoods()">{{'Add Food' | translate}}</ion-label>
+        <ion-label (click)="venueDetails()">{{'Edit Profile' | translate}}</ion-label>
+      </div>
+
+
+
+      <div class="segment_div">
+        <ion-label [class.active]="seg_id == 1" (click)="changeSegment(1)">{{'Reviews' | translate}}</ion-label>
+        <ion-label [class.active]="seg_id == 2" (click)="changeSegment(2)">{{'Photos' | translate}}</ion-label>
+      </div>
+
+      <div *ngIf="seg_id == 1" class="segment_detail">
+
+        <!-- If rating not available-->
+        <div *ngIf="!reviews?.length">
+          <img src="assets/imgs/sleepy.png" class="sleepy">
+          <ion-label class="sleepy_lbl">{{'You havent review yet.' | translate}}</ion-label>
+        </div>
+        <div class="review_card" *ngFor="let item of reviews">
+
+          <div class="user_info">
+
+            <ion-label class="rating">{{item.rate}}<ion-icon name="star"></ion-icon>
+            </ion-label>
+            <div class="user_back" [style.backgroundImage]="'url('+item.uid.cover+')'"></div>
+            <div style="padding-left: 20px;">
+              <ion-label class="username">{{item.uid.fullname}}</ion-label>
+              <ion-label class="city">{{item.uid.email}}</ion-label>
+            </div>
+          </div>
+
+          <div>
+            <ion-label class="comment">
+              {{item.descriptions}}
+            </ion-label>
+          </div>
+
+          <div class="line_div"></div>
+
+        </div>
+      </div>
+
+      <div *ngIf="seg_id == 2" class="segment_detail">
+        <div *ngIf="!images?.length">
+          <img src="assets/imgs/photo_2.png" class="sleepy">
+          <ion-label class="sleepy_lbl">{{'You have not uploaded any photo yet.' | translate}}</ion-label>
+        </div>
+        <ion-row>
+          <ion-col size="4" *ngFor="let item of images">
+            <div *ngIf="item && item !=''" class="bgImg" [style.backgroundImage]="'url('+item+')'"></div>
+          </ion-col>
+        </ion-row>
+      </div>
+
+
+      <ion-button class="logout" (click)="logout()" expand="block">
+        {{'Logout' | translate}}
+      </ion-button>
+
+    </div>
+  </div>
+</ion-content>

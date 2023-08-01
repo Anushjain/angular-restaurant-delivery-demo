@@ -1,0 +1,7 @@
+{
+  "name": "food_driver",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

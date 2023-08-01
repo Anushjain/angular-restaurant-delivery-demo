@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button mode="md"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{'Add new address' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="div_map" #map></div>
+  <div class="informations">
+    <ion-item>
+      <ion-label position="stacked">{{'LOCATIONS' | translate}}</ion-label>
+      <ion-input [(ngModel)]="address"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">{{'HOUSE / FLAT NO' | translate}}</ion-label>
+      <ion-input [(ngModel)]="house"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">{{'LANDMARK' | translate}}</ion-label>
+      <ion-input [(ngModel)]="landmark"></ion-input>
+    </ion-item>
+    <ion-radio-group [(ngModel)]="title">
+      <ion-label class="title">
+        {{'SAVE AS' | translate}}
+      </ion-label>
+      <ion-item style="margin-top: 20px;">
+        <ion-icon name="home-outline" slot="start"></ion-icon>
+        <ion-label>{{'HOME' | translate}}</ion-label>
+        <ion-radio value="home"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon name="briefcase-outline" slot="start"></ion-icon>
+        <ion-label>{{'WORK' | translate}}</ion-label>
+        <ion-radio value="work"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon name="navigate-outline" slot="start"></ion-icon>
+        <ion-label>{{'OTHER' | translate}}</ion-label>
+        <ion-radio value="other"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+    <ion-button *ngIf="from ==='new'" (click)="addAddress()" expand="block">
+      {{'Add' | translate}}
+    </ion-button>
+
+    <ion-button *ngIf="from ==='edit'" (click)="updateAddress()" expand="block">
+      {{'Update' | translate}}
+    </ion-button>
+  </div>
+</ion-content>

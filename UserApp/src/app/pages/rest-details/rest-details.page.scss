@@ -1,0 +1,200 @@
+.main_content_div{
+    width: 100%;
+
+    ion-label {
+        display: block;
+    }
+
+    .flex_lbl{
+        display: flex;
+        align-items: center;
+        margin-bottom: 5px;
+        img{
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+        ion-label {
+            font-weight: 600;
+        }
+        .uber{
+            margin-left: 30px;
+            --background: black;
+            --color: white;
+            margin-right: 10px;
+        }
+        .light_lbl{
+            color: gray;
+            font-weight: normal;
+            font-size: 12px;
+        }
+        
+    }
+    .addr_lbl{
+        padding-left: 30px;
+        font-size: 13px;
+        color: gray;
+        margin-bottom: 10px;
+    }
+    
+    .upper_div{
+        padding: 16px;
+        padding-bottom: 0px;
+
+        .back_image{
+            height: 180px;
+            width: 100%;
+            border-radius: 5px;
+            min-width: 100px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+
+            .open_div{
+                background: var(--ion-color-success);
+                position: absolute;
+                border-radius: 25px;
+                border-top-left-radius: 0px;
+                border-bottom-left-radius: 0px;
+                color: white;
+                top: 5%;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                padding-right: 10px;
+                padding-left: 5px;
+            }
+            .close_div{
+                background: var(--ion-color-danger);
+                position: absolute;
+                border-radius: 25px;
+                border-top-left-radius: 0px;
+                border-bottom-left-radius: 0px;
+                color: white;
+                top: 5%;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                padding-right: 10px;
+                padding-left: 5px;   
+            }
+            .menu_badge{
+                position: absolute;
+                right: 10px;
+                top: 10px;
+                width:50px;
+                padding: 10px;
+            }
+            
+            .abs_div{
+                width: 100%;
+                position: absolute;
+                bottom: 0;
+                padding: 10px;
+                background-image: linear-gradient(-230deg, #17181a63, #827777);
+                .bold_lbl{
+                    font-weight: bold;
+                    color: white;
+                    font-size: 22px;
+                }
+                .small_lbl{
+                    font-size: 14px;
+                    color: white;
+                }
+
+                .number_badge{
+                    position: absolute;
+                    right: 10px;
+                    bottom: 10px;
+                    padding: 10px;
+                    --background: #ed6d6d;
+                }
+            }
+        }
+
+        .content_div{
+            margin-top: 20px;
+            position: relative;
+
+            ion-button{
+                color: #402773;
+            }
+
+            .abs_btn{
+                position: absolute;
+                right: 0;
+                top: -5px;
+                color: #402773;
+                font-size: .6rem;
+            }
+
+            .direction_btn{
+                color: #402773;
+                margin-left: 20px;
+            }
+        }
+    }
+
+    .slider_div{
+        margin-top: 30px;
+        ion-slide{
+            margin-left: 10px;
+        }
+        .slide_image{
+            height: 125px;
+            width: 100%;
+            border-radius: 5px;
+            min-width: 100px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    }
+    .desc{
+        margin-top: 30px;
+        padding-left: 30px;
+        font-size: 13px;
+        color: gray;
+    }
+
+    .lower_div{
+        padding: 16px;
+
+        .flex_div{
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin-top: 20px;
+
+            ion-label{
+                font-size: 12px;
+                color: gray;
+                margin-bottom: 10px;
+            }
+
+            .head_lbl{
+                font-weight: 600;
+                color: black;
+                font-size: 14px;
+            }
+        }
+
+        .btn_flex{
+            margin-top: 20px;
+            display: flex;
+            width: 100%;
+            justify-content: space-evenly;
+
+            ion-button{
+                width: 130px;
+                --background: #402773;
+            }
+        }
+        .thumbs{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+    }
+}

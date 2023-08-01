@@ -1,0 +1,60 @@
+
+ion-slides{
+    height: 90vh;
+}
+.backBtn{
+    position: absolute;
+    top: 20px;
+    left: 0;
+}
+h2{
+    color: var(--ion-color-primary) !important;
+}
+p{
+    color: var(--ion-color-primary) !important;
+}
+ion-item{
+    --ion-background-color:#f3f3f3;
+    border-radius: 5px !important;
+    margin-top: 10px;
+}
+ .btn_class{
+    color: var(--ion-color-primary) ;
+    height: 50px;
+    margin-top: 20px;
+}
+.emailForm{
+    text-align: center;
+    width: 100%;
+    .login-logo {
+        text-align: center;
+        margin: auto;
+        right: 0px;
+        left: 0px;
+        margin-top: 30%;
+        margin-bottom: 20px;
+        .logo_icon{
+            width: 110px !important;
+        }
+    }
+     .back_img{
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 95% !important;
+        height: 25vh;
+        border: 1px solid var(--ion-color-primary);;
+        border-radius: 5px;
+        // box-shadow: 6px 6px 20px 0px white;
+        .gender{
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            width: 25px !important;
+            height: 25px;
+            position: absolute;
+            right: 20px;
+            top: 10px;
+        }
+    }
+}

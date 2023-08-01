@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button mode="md"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Rate</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <p class="title"> Rate Foods</p>
+  <div *ngFor="let item of items" class="flex_box">
+    <ion-label class="name">{{item.name}}</ion-label>
+    <rating [(ngModel)]="item.rate" readOnly="false" max="5" emptyStarIconName="star-outline"
+      halfStarIconName="star-half" starIconName="star" nullable="false" (ngModelChange)="onRatingChange($event)">
+    </rating>
+  </div>
+
+  <p class="title"> Rate Driver</p>
+  <div class="driver">
+    <ion-item lines="none">
+      <ion-avatar slot="start">
+        <img [src]="image" onError="this.src='assets/imgs/paper.png'" />
+      </ion-avatar>
+      <ion-label>{{name}}</ion-label>
+    </ion-item>
+    <rating [(ngModel)]="driver" readOnly="false" max="5" emptyStarIconName="star-outline" halfStarIconName="star-half"
+      starIconName="star" nullable="false" (ngModelChange)="onRatingChange($event)"></rating>
+    <ion-textarea rows="5" [(ngModel)]="driverNotes" placeholder="Write detailed review here.."></ion-textarea>
+  </div>
+  <ion-button (click)="submit()" expand="block" shape="round">
+    Submit
+  </ion-button>
+</ion-content>
